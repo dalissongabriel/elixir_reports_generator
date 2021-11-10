@@ -54,4 +54,19 @@ defmodule ReportsGeneratorTest do
       assert response == expected_response
     end
   end
+
+  describe "fetch_higher_cost/2" do
+    test "when the option is 'users', returns the user who spent the most" do
+      filename = "report_test.csv"
+
+      response =
+        filename
+        |> ReportsGenerator.build()
+        |> ReportsGenerator.fetch_higher_cost("users")
+
+      expected_response = {:ok, {"5", 49}}
+
+      assert response == expected_response
+    end
+  end
 end
