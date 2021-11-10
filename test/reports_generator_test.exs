@@ -81,5 +81,18 @@ defmodule ReportsGeneratorTest do
 
       assert response == expected_response
     end
+
+    test "when invalid option is given, returns an error" do
+      filename = "report_test.csv"
+
+      response =
+        filename
+        |> ReportsGenerator.build()
+        |> ReportsGenerator.fetch_higher_cost("bananas")
+
+      expected_response = {:error, "Invalid option!"}
+
+      assert response == expected_response
+    end
   end
 end
